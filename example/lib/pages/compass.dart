@@ -36,7 +36,7 @@ List<RouteBase> get compassRoutes => $appRoutes;
     ),
   ],
 )
-class CountriesRoute extends GoRouteData with _$CountriesRoute {
+class CountriesRoute extends GoRouteData with $CountriesRoute {
   const CountriesRoute();
 
   @override
@@ -179,7 +179,7 @@ class CountriesRoute extends GoRouteData with _$CountriesRoute {
   }
 }
 
-class CountryRoute extends GoRouteData with _$CountryRoute {
+class CountryRoute extends GoRouteData with $CountryRoute {
   const CountryRoute(this.country);
 
   final String country;
@@ -280,7 +280,7 @@ class CountryRoute extends GoRouteData with _$CountryRoute {
   }
 }
 
-class ActivitiesRoute extends GoRouteData with _$ActivitiesRoute {
+class ActivitiesRoute extends GoRouteData with $ActivitiesRoute {
   const ActivitiesRoute(this.country, this.destination);
 
   final String country;
@@ -502,7 +502,7 @@ class ActivityTile extends StatelessWidget {
   }
 }
 
-class DetailsRoute extends GoRouteData with _$DetailsRoute {
+class DetailsRoute extends GoRouteData with $DetailsRoute {
   const DetailsRoute(
     this.country,
     this.destination,

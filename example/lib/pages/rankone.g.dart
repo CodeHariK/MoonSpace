@@ -6,11 +6,19 @@ part of 'rankone.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(games)
 const gamesProvider = GamesProvider._();
 
 final class GamesProvider
-    extends $FunctionalProvider<AsyncValue<List<Game>>, FutureOr<List<Game>>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Game>>,
+          List<Game>,
+          FutureOr<List<Game>>
+        >
     with $FutureModifier<List<Game>>, $FutureProvider<List<Game>> {
   const GamesProvider._()
     : super(
@@ -38,6 +46,3 @@ final class GamesProvider
 }
 
 String _$gamesHash() => r'2bfe4153da248c68ab9e73bcd5088d28f6bac3b8';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

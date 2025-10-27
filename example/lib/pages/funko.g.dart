@@ -6,11 +6,19 @@ part of 'funko.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(funko)
 const funkoProvider = FunkoProvider._();
 
 final class FunkoProvider
-    extends $FunctionalProvider<AsyncValue<List<Funko>>, FutureOr<List<Funko>>>
+    extends
+        $FunctionalProvider<
+          AsyncValue<List<Funko>>,
+          List<Funko>,
+          FutureOr<List<Funko>>
+        >
     with $FutureModifier<List<Funko>>, $FutureProvider<List<Funko>> {
   const FunkoProvider._()
     : super(
@@ -39,6 +47,3 @@ final class FunkoProvider
 }
 
 String _$funkoHash() => r'8bc5c8fa40cdda57048207401c64e1fbfb54e7fa';
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

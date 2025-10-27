@@ -10,31 +10,26 @@ List<RouteBase> get $appRoutes => [$rootRoute];
 
 RouteBase get $rootRoute => GoRouteData.$route(
   path: '/',
-
-  factory: _$RootRoute._fromState,
+  factory: $RootRoute._fromState,
   routes: [
-    GoRouteData.$route(path: 'extra', factory: _$ExtraRoute._fromState),
+    GoRouteData.$route(path: 'extra', factory: $ExtraRoute._fromState),
     GoRouteData.$route(
       path: 'enum/:requiredEnumField',
-
-      factory: _$EnumRoute._fromState,
+      factory: $EnumRoute._fromState,
     ),
     ShellRouteData.$route(
       navigatorKey: MyShellRouteData.$navigatorKey,
       factory: $MyShellRouteDataExtension._fromState,
       routes: [
-        GoRouteData.$route(path: 'foo', factory: _$FooRouteData._fromState),
+        GoRouteData.$route(path: 'foo', factory: $FooRouteData._fromState),
         GoRouteData.$route(
           path: 'users',
-
-          factory: _$UsersRouteData._fromState,
+          factory: $UsersRouteData._fromState,
           routes: [
             GoRouteData.$route(
               path: ':id',
-
               parentNavigatorKey: UserRouteData.$parentNavigatorKey,
-
-              factory: _$UserRouteData._fromState,
+              factory: $UserRouteData._fromState,
             ),
           ],
         ),
@@ -50,20 +45,17 @@ RouteBase get $rootRoute => GoRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: 'detailsA',
-
-              factory: _$DetailsARouteData._fromState,
+              factory: $DetailsARouteData._fromState,
             ),
           ],
         ),
         StatefulShellBranchData.$branch(
           navigatorKey: BranchBData.$navigatorKey,
           restorationScopeId: BranchBData.$restorationScopeId,
-
           routes: [
             GoRouteData.$route(
               path: 'detailsB',
-
-              factory: _$DetailsBRouteData._fromState,
+              factory: $DetailsBRouteData._fromState,
             ),
           ],
         ),
@@ -74,12 +66,10 @@ RouteBase get $rootRoute => GoRouteData.$route(
       branches: [
         StatefulShellBranchData.$branch(
           initialLocation: NotificationsShellBranchData.$initialLocation,
-
           routes: [
             GoRouteData.$route(
               path: '/notifications/:section',
-
-              factory: _$NotificationsRouteData._fromState,
+              factory: $NotificationsRouteData._fromState,
             ),
           ],
         ),
@@ -87,8 +77,7 @@ RouteBase get $rootRoute => GoRouteData.$route(
           routes: [
             GoRouteData.$route(
               path: '/orders',
-
-              factory: _$OrdersRouteData._fromState,
+              factory: $OrdersRouteData._fromState,
             ),
           ],
         ),
@@ -97,7 +86,7 @@ RouteBase get $rootRoute => GoRouteData.$route(
   ],
 );
 
-mixin _$RootRoute on GoRouteData {
+mixin $RootRoute on GoRouteData {
   static RootRoute _fromState(GoRouterState state) => const RootRoute();
 
   @override
@@ -117,7 +106,7 @@ mixin _$RootRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ExtraRoute on GoRouteData {
+mixin $ExtraRoute on GoRouteData {
   static ExtraRoute _fromState(GoRouterState state) =>
       ExtraRoute($extra: state.extra as Extra?);
 
@@ -142,7 +131,7 @@ mixin _$ExtraRoute on GoRouteData {
       context.replace(location, extra: _self.$extra);
 }
 
-mixin _$EnumRoute on GoRouteData {
+mixin $EnumRoute on GoRouteData {
   static EnumRoute _fromState(GoRouterState state) => EnumRoute(
     requiredEnumField: _$SportDetailsEnumMap._$fromName(
       state.pathParameters['requiredEnumField']!,
@@ -201,7 +190,7 @@ extension $MyShellRouteDataExtension on MyShellRouteData {
       const MyShellRouteData();
 }
 
-mixin _$FooRouteData on GoRouteData {
+mixin $FooRouteData on GoRouteData {
   static FooRouteData _fromState(GoRouterState state) => const FooRouteData();
 
   @override
@@ -221,7 +210,7 @@ mixin _$FooRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$UsersRouteData on GoRouteData {
+mixin $UsersRouteData on GoRouteData {
   static UsersRouteData _fromState(GoRouterState state) =>
       const UsersRouteData();
 
@@ -242,9 +231,9 @@ mixin _$UsersRouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$UserRouteData on GoRouteData {
+mixin $UserRouteData on GoRouteData {
   static UserRouteData _fromState(GoRouterState state) =>
-      UserRouteData(id: int.parse(state.pathParameters['id']!)!);
+      UserRouteData(id: int.parse(state.pathParameters['id']!));
 
   UserRouteData get _self => this as UserRouteData;
 
@@ -272,7 +261,7 @@ extension $MyStatefulShellRouteDataExtension on MyStatefulShellRouteData {
       const MyStatefulShellRouteData();
 }
 
-mixin _$DetailsARouteData on GoRouteData {
+mixin $DetailsARouteData on GoRouteData {
   static DetailsARouteData _fromState(GoRouterState state) =>
       const DetailsARouteData();
 
@@ -293,7 +282,7 @@ mixin _$DetailsARouteData on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$DetailsBRouteData on GoRouteData {
+mixin $DetailsBRouteData on GoRouteData {
   static DetailsBRouteData _fromState(GoRouterState state) =>
       const DetailsBRouteData();
 
@@ -319,7 +308,7 @@ extension $MainShellRouteDataExtension on MainShellRouteData {
       const MainShellRouteData();
 }
 
-mixin _$NotificationsRouteData on GoRouteData {
+mixin $NotificationsRouteData on GoRouteData {
   static NotificationsRouteData _fromState(GoRouterState state) =>
       NotificationsRouteData(
         section: _$NotificationsPageSectionEnumMap._$fromName(
@@ -354,7 +343,7 @@ const _$NotificationsPageSectionEnumMap = {
   NotificationsPageSection.archive: 'archive',
 };
 
-mixin _$OrdersRouteData on GoRouteData {
+mixin $OrdersRouteData on GoRouteData {
   static OrdersRouteData _fromState(GoRouterState state) =>
       const OrdersRouteData();
 

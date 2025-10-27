@@ -26,129 +26,129 @@ import 'package:path_provider/path_provider.dart';
 
 import 'package:device_frame_plus/device_frame_plus.dart';
 
-class DeviceFrameAddon extends WidgetbookAddon<DeviceFrameSetting> {
-  DeviceFrameAddon({
-    required List<DeviceInfo> devices,
-    this.initialDevice = NoneDevice.instance,
-  }) : assert(devices.isNotEmpty, 'devices cannot be empty'),
-       assert(
-         initialDevice == NoneDevice.instance ||
-             devices.contains(initialDevice),
-         'initialDevice must be in devices',
-       ),
-       this.devices = [NoneDevice.instance, ...devices],
-       super(name: 'Device');
+// class DeviceFrameAddon extends WidgetbookAddon<DeviceFrameSetting> {
+//   DeviceFrameAddon({
+//     required List<DeviceInfo> devices,
+//     this.initialDevice = NoneDevice.instance,
+//   }) : assert(devices.isNotEmpty, 'devices cannot be empty'),
+//        assert(
+//          initialDevice == NoneDevice.instance ||
+//              devices.contains(initialDevice),
+//          'initialDevice must be in devices',
+//        ),
+//        this.devices = [NoneDevice.instance, ...devices],
+//        super(name: 'Device');
 
-  final DeviceInfo initialDevice;
-  final List<DeviceInfo> devices;
+//   final DeviceInfo initialDevice;
+//   final List<DeviceInfo> devices;
 
-  @override
-  List<Field> get fields {
-    return [
-      ListField<DeviceInfo>(
-        name: 'name',
-        values: devices,
-        initialValue: initialDevice,
-        labelBuilder: (device) => device.name,
-      ),
-      ListField<Orientation>(
-        name: 'orientation',
-        values: Orientation.values,
-        initialValue: Orientation.portrait,
-        labelBuilder: (orientation) =>
-            orientation.name.substring(0, 1).toUpperCase() +
-            orientation.name.substring(1),
-      ),
-      ListField<bool>(
-        name: 'frame',
-        values: [false, true],
-        initialValue: true,
-        labelBuilder: (hasFrame) => hasFrame ? 'Device Frame' : 'None',
-      ),
-    ];
-  }
+//   @override
+//   List<Field> get fields {
+//     return [
+//       ListField<DeviceInfo>(
+//         name: 'name',
+//         values: devices,
+//         initialValue: initialDevice,
+//         labelBuilder: (device) => device.name,
+//       ),
+//       ListField<Orientation>(
+//         name: 'orientation',
+//         values: Orientation.values,
+//         initialValue: Orientation.portrait,
+//         labelBuilder: (orientation) =>
+//             orientation.name.substring(0, 1).toUpperCase() +
+//             orientation.name.substring(1),
+//       ),
+//       ListField<bool>(
+//         name: 'frame',
+//         values: [false, true],
+//         initialValue: true,
+//         labelBuilder: (hasFrame) => hasFrame ? 'Device Frame' : 'None',
+//       ),
+//     ];
+//   }
 
-  @override
-  DeviceFrameSetting valueFromQueryGroup(Map<String, String> group) {
-    return DeviceFrameSetting(
-      device: valueOf('name', group)!,
-      orientation: valueOf('orientation', group)!,
-      hasFrame: valueOf('frame', group)!,
-    );
-  }
+//   @override
+//   DeviceFrameSetting valueFromQueryGroup(Map<String, String> group) {
+//     return DeviceFrameSetting(
+//       device: valueOf('name', group)!,
+//       orientation: valueOf('orientation', group)!,
+//       hasFrame: valueOf('frame', group)!,
+//     );
+//   }
 
-  final GlobalKey _globalKey = GlobalKey();
+//   final GlobalKey _globalKey = GlobalKey();
 
-  Future<void> _capturePng() async {
-    try {
-      // Find the RenderObject from the global key
-      RenderRepaintBoundary boundary =
-          _globalKey.currentContext!.findRenderObject()
-              as RenderRepaintBoundary;
+//   Future<void> _capturePng() async {
+//     try {
+//       // Find the RenderObject from the global key
+//       RenderRepaintBoundary boundary =
+//           _globalKey.currentContext!.findRenderObject()
+//               as RenderRepaintBoundary;
 
-      // Capture the image
-      ui.Image image = await boundary.toImage(pixelRatio: 4.0);
-      ByteData? byteData = await image.toByteData(
-        format: ui.ImageByteFormat.png,
-      );
-      Uint8List pngBytes = byteData!.buffer.asUint8List();
+//       // Capture the image
+//       ui.Image image = await boundary.toImage(pixelRatio: 4.0);
+//       ByteData? byteData = await image.toByteData(
+//         format: ui.ImageByteFormat.png,
+//       );
+//       Uint8List pngBytes = byteData!.buffer.asUint8List();
 
-      // Save the file
-      final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/${DateTime.now()}.png';
-      final file = File(path);
-      await file.writeAsBytes(pngBytes);
+//       // Save the file
+//       final directory = await getApplicationDocumentsDirectory();
+//       final path = '${directory.path}/${DateTime.now()}.png';
+//       final file = File(path);
+//       await file.writeAsBytes(pngBytes);
 
-      print('Saved to $path');
-      await Clipboard.setData(ClipboardData(text: path));
-    } catch (e) {
-      print('Error: $e');
-    }
-  }
+//       print('Saved to $path');
+//       await Clipboard.setData(ClipboardData(text: path));
+//     } catch (e) {
+//       print('Error: $e');
+//     }
+//   }
 
-  @override
-  Widget buildUseCase(
-    BuildContext context,
-    Widget child,
-    DeviceFrameSetting setting,
-  ) {
-    if (setting.device is NoneDevice) {
-      return child;
-    }
+//   @override
+//   Widget buildUseCase(
+//     BuildContext context,
+//     Widget child,
+//     DeviceFrameSetting setting,
+//   ) {
+//     if (setting.device is NoneDevice) {
+//       return child;
+//     }
 
-    return Padding(
-      padding: const EdgeInsets.all(8),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            Center(
-              child: RepaintBoundary(
-                key: _globalKey,
-                child: DeviceFrame(
-                  orientation: setting.orientation,
-                  device: setting.device,
-                  isFrameVisible: setting.hasFrame,
-                  screen: Navigator(
-                    onGenerateRoute: (_) => PageRouteBuilder(
-                      pageBuilder: (context, _, __) =>
-                          setting.hasFrame ? child : SafeArea(child: child),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            IconButton(
-              onPressed: _capturePng,
-              icon: Icon(Icons.camera),
-              color: Colors.blue,
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//     return Padding(
+//       padding: const EdgeInsets.all(8),
+//       child: Scaffold(
+//         backgroundColor: Colors.transparent,
+//         body: Stack(
+//           children: [
+//             Center(
+//               child: RepaintBoundary(
+//                 key: _globalKey,
+//                 child: DeviceFrame(
+//                   orientation: setting.orientation,
+//                   device: setting.device,
+//                   isFrameVisible: setting.hasFrame,
+//                   screen: Navigator(
+//                     onGenerateRoute: (_) => PageRouteBuilder(
+//                       pageBuilder: (context, _, __) =>
+//                           setting.hasFrame ? child : SafeArea(child: child),
+//                     ),
+//                   ),
+//                 ),
+//               ),
+//             ),
+//             IconButton(
+//               onPressed: _capturePng,
+//               icon: Icon(Icons.camera),
+//               color: Colors.blue,
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
 
 class MyWidgetbook extends StatelessWidget {
   const MyWidgetbook({super.key});
@@ -166,14 +166,15 @@ class MyWidgetbook extends StatelessWidget {
           //   name: 'Accessibility',
           //   builder: (context, child) => AccessibilityTools(child: child),
           // ),
-          DeviceFrameAddon(
-            devices: [
-              Devices.android.samsungGalaxyS20,
-              Devices.ios.iPad12InchesGen4,
-              Devices.ios.iPhone14Pro,
-              Devices.ios.iPhone13Mini,
-            ],
-          ),
+
+          // DeviceFrameAddon(
+          //   devices: [
+          //     Devices.android.samsungGalaxyS20,
+          //     Devices.ios.iPad12InchesGen4,
+          //     Devices.ios.iPhone14Pro,
+          //     Devices.ios.iPhone13Mini,
+          //   ],
+          // ),
           SemanticsAddon(),
           MaterialThemeAddon(
             themes: [WidgetbookTheme(name: "Theme", data: Theme.of(context))],

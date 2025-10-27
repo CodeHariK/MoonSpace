@@ -72,7 +72,7 @@ class GoRouterApp extends StatelessWidget {
     ),
   ],
 )
-class RootRoute extends GoRouteData with _$RootRoute {
+class RootRoute extends GoRouteData with $RootRoute {
   const RootRoute();
 
   @override
@@ -116,7 +116,7 @@ class Extra {
   final int value;
 }
 
-class ExtraRoute extends GoRouteData with _$ExtraRoute {
+class ExtraRoute extends GoRouteData with $ExtraRoute {
   const ExtraRoute({this.$extra});
 
   final Extra? $extra;
@@ -152,7 +152,7 @@ class ExtraRoute extends GoRouteData with _$ExtraRoute {
   );
 }
 
-class EnumRoute extends GoRouteData with _$EnumRoute {
+class EnumRoute extends GoRouteData with $EnumRoute {
   EnumRoute({
     required this.requiredEnumField,
     this.enumField,
@@ -207,7 +207,7 @@ class MyShellRouteData extends ShellRouteData {
   }
 }
 
-class FooRouteData extends GoRouteData with _$FooRouteData {
+class FooRouteData extends GoRouteData with $FooRouteData {
   const FooRouteData();
 
   @override
@@ -254,7 +254,7 @@ class MyShellRouteScreen extends StatelessWidget {
   }
 }
 
-class UsersRouteData extends GoRouteData with _$UsersRouteData {
+class UsersRouteData extends GoRouteData with $UsersRouteData {
   const UsersRouteData();
 
   @override
@@ -293,7 +293,7 @@ class DialogPage extends Page<String> {
   }
 }
 
-class UserRouteData extends GoRouteData with _$UserRouteData {
+class UserRouteData extends GoRouteData with $UserRouteData {
   const UserRouteData({required this.id});
 
   // Without this static key, the dialog will not cover the navigation rail.
@@ -372,7 +372,7 @@ class BranchBData extends StatefulShellBranchData {
   static const String $restorationScopeId = 'restorationScopeId';
 }
 
-class DetailsARouteData extends GoRouteData with _$DetailsARouteData {
+class DetailsARouteData extends GoRouteData with $DetailsARouteData {
   const DetailsARouteData();
 
   @override
@@ -381,7 +381,7 @@ class DetailsARouteData extends GoRouteData with _$DetailsARouteData {
   }
 }
 
-class DetailsBRouteData extends GoRouteData with _$DetailsBRouteData {
+class DetailsBRouteData extends GoRouteData with $DetailsBRouteData {
   const DetailsBRouteData();
 
   @override
@@ -582,7 +582,7 @@ class OrdersShellBranchData extends StatefulShellBranchData {
 
 enum NotificationsPageSection { latest, old, archive }
 
-class NotificationsRouteData extends GoRouteData with _$NotificationsRouteData {
+class NotificationsRouteData extends GoRouteData with $NotificationsRouteData {
   const NotificationsRouteData({required this.section});
 
   final NotificationsPageSection section;
@@ -593,7 +593,7 @@ class NotificationsRouteData extends GoRouteData with _$NotificationsRouteData {
   }
 }
 
-class OrdersRouteData extends GoRouteData with _$OrdersRouteData {
+class OrdersRouteData extends GoRouteData with $OrdersRouteData {
   const OrdersRouteData();
 
   @override

@@ -10,23 +10,19 @@ List<RouteBase> get $appRoutes => [$countriesRoute];
 
 RouteBase get $countriesRoute => GoRouteData.$route(
   path: '/compass',
-
-  factory: _$CountriesRoute._fromState,
+  factory: $CountriesRoute._fromState,
   routes: [
     GoRouteData.$route(
       path: ':country',
-
-      factory: _$CountryRoute._fromState,
+      factory: $CountryRoute._fromState,
       routes: [
         GoRouteData.$route(
           path: ':destination',
-
-          factory: _$ActivitiesRoute._fromState,
+          factory: $ActivitiesRoute._fromState,
           routes: [
             GoRouteData.$route(
               path: ':activites/:daterange',
-
-              factory: _$DetailsRoute._fromState,
+              factory: $DetailsRoute._fromState,
             ),
           ],
         ),
@@ -35,7 +31,7 @@ RouteBase get $countriesRoute => GoRouteData.$route(
   ],
 );
 
-mixin _$CountriesRoute on GoRouteData {
+mixin $CountriesRoute on GoRouteData {
   static CountriesRoute _fromState(GoRouterState state) =>
       const CountriesRoute();
 
@@ -56,7 +52,7 @@ mixin _$CountriesRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$CountryRoute on GoRouteData {
+mixin $CountryRoute on GoRouteData {
   static CountryRoute _fromState(GoRouterState state) =>
       CountryRoute(state.pathParameters['country']!);
 
@@ -80,7 +76,7 @@ mixin _$CountryRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$ActivitiesRoute on GoRouteData {
+mixin $ActivitiesRoute on GoRouteData {
   static ActivitiesRoute _fromState(GoRouterState state) => ActivitiesRoute(
     state.pathParameters['country']!,
     state.pathParameters['destination']!,
@@ -107,7 +103,7 @@ mixin _$ActivitiesRoute on GoRouteData {
   void replace(BuildContext context) => context.replace(location);
 }
 
-mixin _$DetailsRoute on GoRouteData {
+mixin $DetailsRoute on GoRouteData {
   static DetailsRoute _fromState(GoRouterState state) => DetailsRoute(
     state.pathParameters['country']!,
     state.pathParameters['destination']!,
@@ -140,6 +136,9 @@ mixin _$DetailsRoute on GoRouteData {
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(Continents)
 const continentsProvider = ContinentsProvider._();
 
@@ -162,12 +161,6 @@ final class ContinentsProvider
   @$internal
   @override
   Continents create() => Continents();
-
-  @$internal
-  @override
-  $AsyncNotifierProviderElement<Continents, List<String>> $createElement(
-    $ProviderPointer pointer,
-  ) => $AsyncNotifierProviderElement(pointer);
 }
 
 String _$continentsHash() => r'5b2a8c02346d6afb1bc1288aa0949395323e1f76';
@@ -178,11 +171,11 @@ abstract class _$Continents extends $AsyncNotifier<List<String>> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<List<String>>>;
+    final ref = this.ref as $Ref<AsyncValue<List<String>>, List<String>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<String>>>,
+              AnyNotifier<AsyncValue<List<String>>, List<String>>,
               AsyncValue<List<String>>,
               Object?,
               Object?
@@ -214,17 +207,11 @@ final class CurrentContinentProvider
   @override
   CurrentContinent create() => CurrentContinent();
 
-  @$internal
-  @override
-  $NotifierProviderElement<CurrentContinent, String> $createElement(
-    $ProviderPointer pointer,
-  ) => $NotifierProviderElement(pointer);
-
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(String value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $ValueProvider<String>(value),
+      providerOverride: $SyncValueProvider<String>(value),
     );
   }
 }
@@ -237,11 +224,11 @@ abstract class _$CurrentContinent extends $Notifier<String> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<String>;
+    final ref = this.ref as $Ref<String, String>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<String>,
+              AnyNotifier<String, String>,
               String,
               Object?,
               Object?
@@ -272,12 +259,6 @@ final class CountryDestinationsProvider
   @$internal
   @override
   CountryDestinations create() => CountryDestinations();
-
-  @$internal
-  @override
-  $AsyncNotifierProviderElement<CountryDestinations, List<Destination>>
-  $createElement($ProviderPointer pointer) =>
-      $AsyncNotifierProviderElement(pointer);
 }
 
 String _$countryDestinationsHash() =>
@@ -289,11 +270,12 @@ abstract class _$CountryDestinations extends $AsyncNotifier<List<Destination>> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<List<Destination>>>;
+    final ref =
+        this.ref as $Ref<AsyncValue<List<Destination>>, List<Destination>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<Destination>>>,
+              AnyNotifier<AsyncValue<List<Destination>>, List<Destination>>,
               AsyncValue<List<Destination>>,
               Object?,
               Object?
@@ -325,17 +307,11 @@ final class CurrentDestinationProvider
   @override
   CurrentDestination create() => CurrentDestination();
 
-  @$internal
-  @override
-  $NotifierProviderElement<CurrentDestination, String> $createElement(
-    $ProviderPointer pointer,
-  ) => $NotifierProviderElement(pointer);
-
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(String value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $ValueProvider<String>(value),
+      providerOverride: $SyncValueProvider<String>(value),
     );
   }
 }
@@ -349,11 +325,11 @@ abstract class _$CurrentDestination extends $Notifier<String> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<String>;
+    final ref = this.ref as $Ref<String, String>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<String>,
+              AnyNotifier<String, String>,
               String,
               Object?,
               Object?
@@ -384,12 +360,6 @@ final class DestinationActivitiesProvider
   @$internal
   @override
   DestinationActivities create() => DestinationActivities();
-
-  @$internal
-  @override
-  $AsyncNotifierProviderElement<DestinationActivities, List<Activity>>
-  $createElement($ProviderPointer pointer) =>
-      $AsyncNotifierProviderElement(pointer);
 }
 
 String _$destinationActivitiesHash() =>
@@ -401,11 +371,11 @@ abstract class _$DestinationActivities extends $AsyncNotifier<List<Activity>> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<List<Activity>>>;
+    final ref = this.ref as $Ref<AsyncValue<List<Activity>>, List<Activity>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<Activity>>>,
+              AnyNotifier<AsyncValue<List<Activity>>, List<Activity>>,
               AsyncValue<List<Activity>>,
               Object?,
               Object?
@@ -437,17 +407,11 @@ final class SelectedActivitiesProvider
   @override
   SelectedActivities create() => SelectedActivities();
 
-  @$internal
-  @override
-  $NotifierProviderElement<SelectedActivities, List<String>> $createElement(
-    $ProviderPointer pointer,
-  ) => $NotifierProviderElement(pointer);
-
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(List<String> value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $ValueProvider<List<String>>(value),
+      providerOverride: $SyncValueProvider<List<String>>(value),
     );
   }
 }
@@ -461,11 +425,11 @@ abstract class _$SelectedActivities extends $Notifier<List<String>> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<List<String>>;
+    final ref = this.ref as $Ref<List<String>, List<String>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<List<String>>,
+              AnyNotifier<List<String>, List<String>>,
               List<String>,
               Object?,
               Object?
@@ -496,12 +460,6 @@ final class DestinationsProvider
   @$internal
   @override
   Destinations create() => Destinations();
-
-  @$internal
-  @override
-  $AsyncNotifierProviderElement<Destinations, List<Destination>> $createElement(
-    $ProviderPointer pointer,
-  ) => $AsyncNotifierProviderElement(pointer);
 }
 
 String _$destinationsHash() => r'414be64d1e6132639e92e6b9414c71d3d65ee6b7';
@@ -512,11 +470,12 @@ abstract class _$Destinations extends $AsyncNotifier<List<Destination>> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<AsyncValue<List<Destination>>>;
+    final ref =
+        this.ref as $Ref<AsyncValue<List<Destination>>, List<Destination>>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<AsyncValue<List<Destination>>>,
+              AnyNotifier<AsyncValue<List<Destination>>, List<Destination>>,
               AsyncValue<List<Destination>>,
               Object?,
               Object?
@@ -532,6 +491,7 @@ final class ActivitiesProvider
     extends
         $FunctionalProvider<
           AsyncValue<List<Activity>>,
+          List<Activity>,
           FutureOr<List<Activity>>
         >
     with $FutureModifier<List<Activity>>, $FutureProvider<List<Activity>> {
@@ -586,16 +546,13 @@ final class TravelClientProvider
   @override
   TravelClient create() => TravelClient();
 
-  @$internal
-  @override
-  $NotifierProviderElement<TravelClient, protoclient.TravelServiceClient>
-  $createElement($ProviderPointer pointer) => $NotifierProviderElement(pointer);
-
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(protoclient.TravelServiceClient value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $ValueProvider<protoclient.TravelServiceClient>(value),
+      providerOverride: $SyncValueProvider<protoclient.TravelServiceClient>(
+        value,
+      ),
     );
   }
 }
@@ -609,11 +566,19 @@ abstract class _$TravelClient
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<protoclient.TravelServiceClient>;
+    final ref =
+        this.ref
+            as $Ref<
+              protoclient.TravelServiceClient,
+              protoclient.TravelServiceClient
+            >;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<protoclient.TravelServiceClient>,
+              AnyNotifier<
+                protoclient.TravelServiceClient,
+                protoclient.TravelServiceClient
+              >,
               protoclient.TravelServiceClient,
               Object?,
               Object?
@@ -621,6 +586,3 @@ abstract class _$TravelClient
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

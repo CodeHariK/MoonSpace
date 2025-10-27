@@ -6,6 +6,9 @@ part of 'global_theme.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+
 @ProviderFor(GlobalTheme)
 const globalThemeProvider = GlobalThemeProvider._();
 
@@ -29,22 +32,16 @@ final class GlobalThemeProvider
   @override
   GlobalTheme create() => GlobalTheme();
 
-  @$internal
-  @override
-  $NotifierProviderElement<GlobalTheme, GlobalAppTheme> $createElement(
-    $ProviderPointer pointer,
-  ) => $NotifierProviderElement(pointer);
-
   /// {@macro riverpod.override_with_value}
   Override overrideWithValue(GlobalAppTheme value) {
     return $ProviderOverride(
       origin: this,
-      providerOverride: $ValueProvider<GlobalAppTheme>(value),
+      providerOverride: $SyncValueProvider<GlobalAppTheme>(value),
     );
   }
 }
 
-String _$globalThemeHash() => r'5a2ed32eba3024c76238d7e4e19dc5860fa3449c';
+String _$globalThemeHash() => r'0d19ca9c9ce572efd5f5d8546c98a1e037a72b9f';
 
 abstract class _$GlobalTheme extends $Notifier<GlobalAppTheme> {
   GlobalAppTheme build();
@@ -52,11 +49,11 @@ abstract class _$GlobalTheme extends $Notifier<GlobalAppTheme> {
   @override
   void runBuild() {
     final created = build();
-    final ref = this.ref as $Ref<GlobalAppTheme>;
+    final ref = this.ref as $Ref<GlobalAppTheme, GlobalAppTheme>;
     final element =
         ref.element
             as $ClassProviderElement<
-              AnyNotifier<GlobalAppTheme>,
+              AnyNotifier<GlobalAppTheme, GlobalAppTheme>,
               GlobalAppTheme,
               Object?,
               Object?
@@ -64,6 +61,3 @@ abstract class _$GlobalTheme extends $Notifier<GlobalAppTheme> {
     element.handleValue(ref, created);
   }
 }
-
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

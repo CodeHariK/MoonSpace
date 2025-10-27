@@ -33,7 +33,7 @@ class SmoothSheetApp extends StatelessWidget {
                     // Use `SwipeDismissSensitivity` to tweak the sensitivity of the swipe-to-dismiss behavior.
                     swipeDismissSensitivity: const SwipeDismissSensitivity(
                       minFlingVelocityRatio: 2.0,
-                      minDragDistance: 200.0,
+                      dismissalOffset: SheetOffset(0.4),
                     ),
                     // You don't need a SheetViewport for the modal sheet.
                     child: const _ModalSheet(),
@@ -205,7 +205,7 @@ void showSheet(
         // Use `SwipeDismissSensitivity` to tweak the sensitivity of the swipe-to-dismiss behavior.
         swipeDismissSensitivity: const SwipeDismissSensitivity(
           minFlingVelocityRatio: 2.0,
-          minDragDistance: 300.0,
+          dismissalOffset: SheetOffset(0.4),
         ),
         builder: (context) => Material(
           type: MaterialType.transparency,
