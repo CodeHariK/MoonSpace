@@ -13,25 +13,19 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:moonspace/controller/app_scroll_behavior.dart';
 import 'package:moonspace/feedback/feedback_form.dart';
 import 'package:moonspace/helper/extensions/theme_ext.dart';
-import 'package:moonspace/helper/validator/debug_functions.dart';
 import 'package:moonspace/provider/pref.dart';
 import 'package:moonspace/theme.dart';
 import 'package:moonspace/provider/global_theme.dart';
 
 class Electric {
-  static final GlobalKey<NavigatorState> electricOverlayKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> electricNavigatorKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-      GlobalKey();
-  static const String moonspaceRestorationScopeId =
-      'MoonSpaceRestorationScopeId';
+  static final GlobalKey<NavigatorState> electricOverlayKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> electricNavigatorKey = GlobalKey<NavigatorState>();
+  static final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey = GlobalKey();
+  static const String moonspaceRestorationScopeId = 'MoonSpaceRestorationScopeId';
   static const String appRestorationScopeId = 'AppRestorationScopeId';
 
   static BuildContext get overlayContext => electricOverlayKey.currentContext!;
-  static BuildContext get navigatorContext =>
-      electricNavigatorKey.currentContext!;
+  static BuildContext get navigatorContext => electricNavigatorKey.currentContext!;
 }
 
 void electrify({
@@ -141,10 +135,7 @@ void electrify({
           container: container,
           child: BetterFeedback(
             feedbackBuilder: (context, onSubmit, scrollController) {
-              return FeedbackForm(
-                onSubmit: onSubmit,
-                scrollController: scrollController,
-              );
+              return FeedbackForm(onSubmit: onSubmit, scrollController: scrollController);
             },
             theme: FeedbackThemeData(),
             localizationsDelegates: [GlobalFeedbackLocalizationsDelegate()],
@@ -205,11 +196,9 @@ class MoonSpaceHome extends ConsumerWidget {
       restorationId: Electric.moonspaceRestorationScopeId,
       child: LayoutBuilder(
         builder: (context, constraints) {
-          AppTheme.currentTheme = AppTheme.currentTheme.copyWith(
-            size: constraints.biggest,
-          );
+          AppTheme.currentTheme = AppTheme.currentTheme.copyWith(size: constraints.biggest);
 
-          dino('MoonSpace Rebuild ${constraints.biggest} \n');
+          debugPrint('MoonSpace Rebuild ${constraints.biggest} \n');
 
           return CupertinoTheme(
             data: CupertinoThemeData(
@@ -287,10 +276,7 @@ class DebugRouteOverlay extends StatelessWidget {
               child: IgnorePointer(
                 child: Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 12,
-                      vertical: 6,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                     decoration: BoxDecoration(
                       color: Colors.black.withOpacity(0.7),
                       borderRadius: BorderRadius.circular(8),
