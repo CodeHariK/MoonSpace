@@ -8,6 +8,8 @@ class ButtonView extends StatelessWidget {
     return Column(
       children: [
         Wrap(
+          runSpacing: 8,
+          spacing: 4,
           children: <Widget>[
             Buttons(isDisabled: false, hasIcon: false),
             Buttons(isDisabled: false, hasIcon: true),
@@ -15,6 +17,8 @@ class ButtonView extends StatelessWidget {
           ],
         ),
         Wrap(
+          runSpacing: 4,
+          spacing: 4,
           children: [
             ActionChip(
               label: const Text('Assist'),
@@ -25,7 +29,9 @@ class ButtonView extends StatelessWidget {
             InputChip(label: const Text('Input'), onPressed: () {}, onDeleted: () {}),
           ],
         ),
+        SizedBox(height: 8),
         Wrap(
+          spacing: 8,
           children: [
             IconButton.filled(
               icon: const Icon(Icons.settings_outlined),
@@ -73,6 +79,7 @@ class ButtonView extends StatelessWidget {
             ),
           ],
         ),
+        FloatingActionButtons(),
       ],
     );
   }
@@ -139,6 +146,40 @@ class Buttons extends StatelessWidget {
                 : TextButton(onPressed: isDisabled ? null : () {}, child: const Text('Text')),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class FloatingActionButtons extends StatelessWidget {
+  const FloatingActionButtons({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Wrap(
+        crossAxisAlignment: WrapCrossAlignment.center,
+        runSpacing: 4,
+        spacing: 4,
+        children: [
+          FloatingActionButton.small(
+            onPressed: () {},
+            tooltip: 'Small',
+            child: const Icon(Icons.add),
+          ),
+          FloatingActionButton.extended(
+            onPressed: () {},
+            tooltip: 'Extended',
+            icon: const Icon(Icons.add),
+            label: const Text('Create'),
+          ),
+          FloatingActionButton(onPressed: () {}, tooltip: 'Standard', child: const Icon(Icons.add)),
+          FloatingActionButton.large(
+            onPressed: () {},
+            tooltip: 'Large',
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }

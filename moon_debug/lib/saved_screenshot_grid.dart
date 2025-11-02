@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:moon_debug/helper/image_save.dart';
+import 'package:moonspace/helper/extensions/theme_ext.dart';
 
 import 'package:path_provider/path_provider.dart';
 
@@ -48,9 +49,9 @@ class _SavedScreenshotGridState extends State<SavedScreenshotGrid> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: context.cSecCon,
       body: imageFiles.isEmpty
-          ? const Center(child: Text('No images found.'))
+          ? Center(child: Text('No images found.', style: context.dl.c(context.cOnSec)))
           : Stack(
               children: [
                 GridView.builder(

@@ -17,9 +17,7 @@ extension AppThemeNumber on num {
 
 extension AppThemeRange on (num, num) {
   double get s => ($1 + ($2 - $1) * AppTheme.rs).toDouble();
-  double get c =>
-      AppTheme.currentTheme.baseunit *
-      ($1 + ($2 - $1) * AppTheme.rc).toDouble();
+  double get c => AppTheme.currentTheme.baseunit * ($1 + ($2 - $1) * AppTheme.rc).toDouble();
 }
 
 TextStyle samestyle(TextStyle s) {
@@ -36,8 +34,8 @@ class AppTheme {
 
   final bool dark;
   final Color primary;
-  final Color secondary;
-  final Color tertiary;
+  final Color? secondary;
+  final Color? tertiary;
   final ColorScheme? themedata;
 
   final (int, int) borderRadius;
@@ -85,8 +83,8 @@ class AppTheme {
 
     required this.dark,
     required this.primary,
-    required this.secondary,
-    required this.tertiary,
+    this.secondary,
+    this.tertiary,
     this.themedata,
 
     required this.borderRadius,
@@ -136,9 +134,9 @@ class AppTheme {
       padding: (14, 16),
 
       primary: const Color(0xff8a73cf),
+
       secondary: const Color(0xffb2d2a4),
       tertiary: const Color(0xffffffff),
-
       baseunit: 1.0,
     ),
   ];
@@ -156,32 +154,48 @@ class AppTheme {
   static double get mh => currentTheme.maxSize.height;
 
   static num get a => (AppTheme.w / AppTheme.dw) * (AppTheme.h / AppTheme.dh);
-  static num get m =>
-      min((AppTheme.w / AppTheme.dw), (AppTheme.h / AppTheme.dh));
-  static num get s =>
-      pow((AppTheme.w / AppTheme.dw) * (AppTheme.h / AppTheme.dh), 1 / 2);
-  static num get c =>
-      pow((AppTheme.w / AppTheme.dw) * (AppTheme.h / AppTheme.dh), 0.2);
-  static num get maxs =>
-      pow((AppTheme.mw / AppTheme.dw) * (AppTheme.mh / AppTheme.dh), 1 / 2);
-  static num get maxc =>
-      pow((AppTheme.mw / AppTheme.dw) * (AppTheme.mh / AppTheme.dh), 0.2);
+  static num get m => min((AppTheme.w / AppTheme.dw), (AppTheme.h / AppTheme.dh));
+  static num get s => pow((AppTheme.w / AppTheme.dw) * (AppTheme.h / AppTheme.dh), 1 / 2);
+  static num get c => pow((AppTheme.w / AppTheme.dw) * (AppTheme.h / AppTheme.dh), 0.2);
+  static num get maxs => pow((AppTheme.mw / AppTheme.dw) * (AppTheme.mh / AppTheme.dh), 1 / 2);
+  static num get maxc => pow((AppTheme.mw / AppTheme.dw) * (AppTheme.mh / AppTheme.dh), 0.2);
   static num get rs => min(1, max(0, AppTheme.s - 1) / (AppTheme.maxs - 1));
   static num get rc => min(1, max(0, AppTheme.c - 1) / (AppTheme.maxc - 1));
 
   static TextTheme get tx => currentTheme.textTheme;
 
   ColorScheme buildColorScheme() {
-    final surface = isDark
-        ? const Color.fromARGB(255, 20, 20, 20)
-        : Colors.white;
+    final surface = isDark ? const Color.fromARGB(255, 20, 20, 20) : Colors.white;
     final onSurface = isDark
-        ? Colors.white
+        ? const Color.fromARGB(255, 230, 230, 230)
         : const Color.fromARGB(255, 60, 60, 60);
 
     final outline = isDark
         ? const Color.fromARGB(255, 117, 117, 117)
         : const Color.fromARGB(255, 208, 208, 208);
+
+    final secondary = this.secondary ?? onSurface;
+    final tertiary = this.tertiary ?? onSurface;
+
+    // return ColorScheme.fromSeed(
+    //   brightness: isDark ? Brightness.dark : Brightness.light,
+    //   seedColor: primary,
+
+    //   secondary: secondary,
+    //   onSecondary: secondary.getOnColor(),
+    //   secondaryContainer: secondary,
+    //   onSecondaryContainer: secondary.getOnColor(),
+    //   secondaryFixed: secondary,
+    //   onSecondaryFixed: secondary.getOnColor(),
+    //   secondaryFixedDim: secondary,
+    //   onSecondaryFixedVariant: secondary.getOnColor(),
+
+    //   tertiary: this.tertiary,
+    // );
+    // if (this.secondary == null) {}
+
+    // final secondary = this.secondary ?? onSurface;
+    // final tertiary = this.tertiary ?? onSurface;
 
     return ColorScheme(
       brightness: isDark ? Brightness.dark : Brightness.light,
@@ -245,69 +259,43 @@ class AppTheme {
   TextTheme get textTheme {
     return TextTheme(
       //h0
-      displayLarge: headlineTextStyle(
-        TextStyle(letterSpacing: .5.c, fontSize: (42, 50).c),
-      ),
+      displayLarge: headlineTextStyle(TextStyle(letterSpacing: .5.c, fontSize: (42, 50).c)),
       //h1
-      displayMedium: headlineTextStyle(
-        TextStyle(letterSpacing: .5.c, fontSize: (36, 42).c),
-      ),
+      displayMedium: headlineTextStyle(TextStyle(letterSpacing: .5.c, fontSize: (36, 42).c)),
       //h2
-      displaySmall: headlineTextStyle(
-        TextStyle(letterSpacing: .5.c, fontSize: (32, 36).c),
-      ),
+      displaySmall: headlineTextStyle(TextStyle(letterSpacing: .5.c, fontSize: (32, 36).c)),
 
       //h3
-      headlineLarge: headlineTextStyle(
-        TextStyle(letterSpacing: .5.c, fontSize: (26, 32).c),
-      ),
+      headlineLarge: headlineTextStyle(TextStyle(letterSpacing: .5.c, fontSize: (26, 32).c)),
       //h4
-      headlineMedium: headlineTextStyle(
-        TextStyle(letterSpacing: .5.c, fontSize: (22, 26).c),
-      ),
+      headlineMedium: headlineTextStyle(TextStyle(letterSpacing: .5.c, fontSize: (22, 26).c)),
       //h5
       headlineSmall: headlineTextStyle(TextStyle(fontSize: (19, 22).c)),
 
       //h6, Appbar
-      titleLarge: bodyTextStyle(
-        TextStyle(letterSpacing: 0.c, fontSize: (17, 19).c),
-      ),
+      titleLarge: bodyTextStyle(TextStyle(letterSpacing: 0.c, fontSize: (17, 19).c)),
 
       //h7, CupertinoListTile, ListTile Title, Textfield label
       titleMedium: bodyTextStyle(
-        TextStyle(
-          letterSpacing: 1.c,
-          fontSize: (15, 16).c,
-          fontWeight: FontWeight.w400,
-        ),
+        TextStyle(letterSpacing: 1.c, fontSize: (15, 16).c, fontWeight: FontWeight.w400),
       ),
 
       //h8, Tabs
-      titleSmall: bodyTextStyle(
-        TextStyle(fontSize: (14, 14).c, fontWeight: FontWeight.w400),
-      ),
-      //TextFormField, CupertinoFormSection header, ListTile, SwitchTile, RadioTile
-      bodyLarge: bodyTextStyle(TextStyle(fontSize: (14, 15).c)),
+      titleSmall: bodyTextStyle(TextStyle(fontSize: (15, 16).c, fontWeight: FontWeight.w400)),
+      //TextFormField, CupertinoFormSection header, Title ListTile, SwitchTile, RadioTile
+      bodyLarge: bodyTextStyle(TextStyle(fontSize: (15, 16).c)),
 
       //h9, Text,  Textfield font, Tile subtitle
-      bodyMedium: bodyTextStyle(
-        TextStyle(fontSize: (13, 14).c, fontWeight: FontWeight.w400),
-      ),
+      bodyMedium: bodyTextStyle(TextStyle(fontSize: (13, 14).c, fontWeight: FontWeight.w400)),
       //Buttons
-      labelLarge: bodyTextStyle(
-        TextStyle(fontSize: (13, 14).c, fontWeight: FontWeight.w400),
-      ),
+      labelLarge: bodyTextStyle(TextStyle(fontSize: (13, 14).c, fontWeight: FontWeight.w400)),
 
       //p, ListTile subtitle, errortext
       bodySmall: bodyTextStyle(TextStyle(fontSize: (12, 13).c)),
       //BottomNavBar, Navigation
-      labelMedium: bodyTextStyle(
-        TextStyle(fontSize: (12, 13).c, fontWeight: FontWeight.w400),
-      ),
+      labelMedium: bodyTextStyle(TextStyle(fontSize: (12, 13).c, fontWeight: FontWeight.w400)),
 
-      labelSmall: bodyTextStyle(
-        TextStyle(fontSize: (10, 11).c, fontWeight: FontWeight.w400),
-      ),
+      labelSmall: bodyTextStyle(TextStyle(fontSize: (10, 11).c, fontWeight: FontWeight.w400)),
     );
   }
 
@@ -321,16 +309,27 @@ class AppTheme {
       colorScheme: colorScheme,
       textTheme: textTheme,
 
-      //
-      dividerTheme: DividerThemeData(),
+      // hoverColor: Colors.red,
+      // focusColor: Colors.blue,
+      // highlightColor: Colors.green,
+      // splashColor: Colors.yellow,
+      // splashFactory: NoSplash.splashFactory,
+      // disabledColor: colorScheme.onSurface.withAlpha(120),
+      visualDensity: VisualDensity.adaptivePlatformDensity,
+
+      // switchTheme: SwitchThemeData(
+      //   // trackColor: MaterialStateProperty.all(colorScheme.primary),
+      //   // thumbColor: MaterialStateProperty.all(colorScheme.tertiary),
+      //   overlayColor: MaterialStateProperty.all(colorScheme.primary.withAlpha(250)),
+      //   thumbIcon: WidgetStateProperty.all(Icon(Icons.check)),
+      // ),
+      // dividerTheme: DividerThemeData(),
 
       //
       inputDecorationTheme: InputDecorationTheme(
         border: !inputOutlined
             ? null
-            : OutlineInputBorder(
-                borderRadius: BorderRadius.circular(borderRadius.c),
-              ),
+            : OutlineInputBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
         filled: inputfilled,
         fillColor: colorScheme.surfaceContainerHigh,
 
@@ -340,12 +339,21 @@ class AppTheme {
       // splashColor: ,
       appBarTheme: AppBarTheme(surfaceTintColor: Colors.white),
 
+      chipTheme: ChipThemeData(
+        // selectedColor: colorScheme.secondary,
+        // backgroundColor: colorScheme.secondary,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
+      ),
+
       //
       listTileTheme: ListTileThemeData(
-        selectedTileColor: colorScheme.surfaceContainerHigh,
-        // shape: RoundedRectangleBorder(
-        //   borderRadius: BorderRadius.circular(borderRadius.c),
-        // ),
+        selectedTileColor: colorScheme.surfaceContainer,
+        // selectedTileColor: colorScheme.primary,
+        // tileColor: Colors.amber,
+        // selectedColor: Colors.blue,
+        // iconColor: Colors.red,
+        // textColor: Colors.green,
+        // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
       ),
 
       //
@@ -363,25 +371,19 @@ class AppTheme {
       //
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius.c),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
           padding: EdgeInsets.all(padding.c),
         ),
       ),
       filledButtonTheme: FilledButtonThemeData(
         style: FilledButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius.c),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
           padding: EdgeInsets.all(padding.c),
         ),
       ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadius.c),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(borderRadius.c)),
           padding: EdgeInsets.all(padding.c),
         ),
       ),
@@ -452,6 +454,6 @@ class AppTheme {
 
   @override
   String toString() {
-    return 'AppTheme(size: $size, maxSize: $maxSize, designSize: $designSize, dark: $dark, primary: ${primary.hexCode}, secondary: ${secondary.hexCode}, tertiary: ${tertiary.hexCode})';
+    return 'AppTheme(size: $size, maxSize: $maxSize, designSize: $designSize, dark: $dark, primary: ${primary.hexCode}, secondary: ${secondary?.hexCode}, tertiary: ${tertiary?.hexCode})';
   }
 }

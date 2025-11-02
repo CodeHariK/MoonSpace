@@ -18,10 +18,7 @@ class RecipeApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
-          'Desserts',
-          style: GoogleFonts.alice(textStyle: context.h2),
-        ),
+        title: Text('Desserts', style: GoogleFonts.alice(textStyle: context.h2)),
         centerTitle: false,
 
         actions: [
@@ -35,30 +32,15 @@ class RecipeApp extends StatelessWidget {
         showUnselectedLabels: true,
         onTap: (value) {
           if (value == 1) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => CheckoutCartPage()),
-            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) => CheckoutCartPage()));
           } else if (value == 2) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => ReviewPage()),
-            );
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ReviewPage()));
           }
         },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(CupertinoIcons.cart),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border_outlined),
-            label: 'Review',
-          ),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.cart), label: 'Cart'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite_border_outlined), label: 'Review'),
         ],
       ),
       body: RecipeListView(),
@@ -161,9 +143,7 @@ class _RecipeListViewState extends State<RecipeListView> {
                   itemCountAfter: context.r(2, 3, 4, 5, 5, 5).toInt(),
                   // width: context.mq.w,
                   rotationMultiplier: 0,
-                  xMultiplier: context
-                      .r(2.2, (3.1, 3.2).c, 4, 4.8, 5, 6)
-                      .toDouble(),
+                  xMultiplier: context.r(2.2, (3.1, 3.2).c, 4, 4.8, 5, 6).toDouble(),
                   yMultiplier: 0,
                   opacityMin: 1,
                   scaleMin: 1,
@@ -189,17 +169,10 @@ class _RecipeListViewState extends State<RecipeListView> {
                             ),
 
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(
-                                16,
-                                0,
-                                16,
-                                56.0,
-                              ),
+                              padding: const EdgeInsets.fromLTRB(16, 0, 16, 56.0),
                               child: Transform.rotate(
                                 angle: ratio * 5,
-                                child: Image.asset(
-                                  RecipesData.dessertMenu[index].image,
-                                ),
+                                child: Image.asset(RecipesData.dessertMenu[index].image),
                               ),
                             ),
 
@@ -210,8 +183,7 @@ class _RecipeListViewState extends State<RecipeListView> {
                                 children: [
                                   Expanded(
                                     child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                      crossAxisAlignment: CrossAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
                                         Text(
@@ -220,11 +192,7 @@ class _RecipeListViewState extends State<RecipeListView> {
                                           style: context.h9,
                                           maxLines: 1,
                                         ),
-                                        Text(
-                                          "\$8",
-                                          textAlign: TextAlign.start,
-                                          style: context.h9,
-                                        ),
+                                        Text("\$8", textAlign: TextAlign.start, style: context.h9),
                                       ],
                                     ),
                                   ),
@@ -232,9 +200,7 @@ class _RecipeListViewState extends State<RecipeListView> {
                                     onPressed: () {},
                                     isSelected: index % 2 == 1,
                                     icon: Icon(CupertinoIcons.heart),
-                                    selectedIcon: Icon(
-                                      CupertinoIcons.heart_fill,
-                                    ),
+                                    selectedIcon: Icon(CupertinoIcons.heart_fill),
                                   ),
                                 ],
                               ),
@@ -252,10 +218,7 @@ class _RecipeListViewState extends State<RecipeListView> {
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-              child: Text(
-                "Best Prices",
-                style: GoogleFonts.alice(textStyle: context.h4),
-              ),
+              child: Text("Best Prices", style: GoogleFonts.alice(textStyle: context.h4)),
             ),
           ),
 
@@ -266,9 +229,7 @@ class _RecipeListViewState extends State<RecipeListView> {
                 crossAxisCount: context.r(1, 1, 2, 2, 3, 4).toInt(),
                 mainAxisSpacing: 24,
                 crossAxisSpacing: 24,
-                childAspectRatio: context
-                    .r(1.4, 1.8, 1.8, 1.8, 1.8, 1.8)
-                    .toDouble(),
+                childAspectRatio: context.r(1.4, 1.8, 1.8, 1.8, 1.8, 1.8).toDouble(),
               ),
               delegate: SliverChildBuilderDelegate((context, index) {
                 return RecipeCard(
@@ -304,10 +265,7 @@ class RecipeCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => RecipePage(index: index)),
-        );
+        Navigator.push(context, MaterialPageRoute(builder: (context) => RecipePage(index: index)));
       },
       child:
           Container(
@@ -334,18 +292,17 @@ class RecipeCard extends StatelessWidget {
                     ),
                     Expanded(
                       flex: 2,
-                      child:
-                          RecipeImage(delay: delay, index: index, sliver: false)
-                              .animate()
-                              .scale(end: Offset(1.1, 1.1))
-                              .rotate(
-                                delay: delay,
-                                alignment: Alignment.center,
-                                duration: 400.ms,
-                                begin: 0.4,
-                                end: 0,
-                              )
-                              .move(end: Offset(20, 20)),
+                      child: RecipeImage(delay: delay, index: index, sliver: false)
+                          .animate()
+                          .scale(end: Offset(1.1, 1.1))
+                          .rotate(
+                            delay: delay,
+                            alignment: Alignment.center,
+                            duration: 400.ms,
+                            begin: 0.4,
+                            end: 0,
+                          )
+                          .move(end: Offset(20, 20)),
                     ),
                   ],
                 ),
@@ -371,9 +328,7 @@ class RecipeTitle extends StatelessWidget {
       child: Text(
         recipe.title,
         style: GoogleFonts.alice(
-          textStyle: context.h2.w5.c(
-            sliver ? context.cOnSur : recipe.bgColor.getOnColor(),
-          ),
+          textStyle: context.h2.w5.c(sliver ? context.cOnSur : recipe.bgColor.getOnColor()),
         ),
         maxLines: 2,
       ),
@@ -394,9 +349,7 @@ class RecipeSubtitle extends StatelessWidget {
       tag: "RecipeSubtitle-$index",
       child: Text(
         recipe.description,
-        style: context.h8.c(
-          sliver ? context.cOnSur : recipe.bgColor.getOnColor(),
-        ),
+        style: context.h8.c(sliver ? context.cOnSur : recipe.bgColor.getOnColor()),
         maxLines: 3,
       ),
     );
@@ -404,12 +357,7 @@ class RecipeSubtitle extends StatelessWidget {
 }
 
 class RecipeImage extends StatelessWidget {
-  const RecipeImage({
-    super.key,
-    required this.delay,
-    required this.index,
-    required this.sliver,
-  });
+  const RecipeImage({super.key, required this.delay, required this.index, required this.sliver});
 
   final Duration delay;
   final int index;
@@ -520,9 +468,7 @@ class _RecipePageState extends State<RecipePage> {
             expandedHeight: 300,
             backgroundColor: recipe.bgColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadiusGeometry.vertical(
-                bottom: Radius.circular(32),
-              ),
+              borderRadius: BorderRadiusGeometry.vertical(bottom: Radius.circular(32)),
             ),
             flexibleSpace: _img(),
           ),
@@ -612,51 +558,35 @@ class _RecipePageState extends State<RecipePage> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.yard_outlined,
-                            size: 50,
-                            color: context.cSur9,
-                          ),
+                          Icon(Icons.yard_outlined, size: 50, color: context.cSur9),
                           SizedBox(height: 4),
-                          Text(
-                            'Item ${index + 1}',
-                            style: context.h8.c(context.cSur9),
-                          ),
+                          Text('Item ${index + 1}', style: context.h8.c(context.cSur9)),
                         ],
                       ),
                     );
                   }),
                 ),
                 const SizedBox(height: 16),
-                Text(
-                  'Mayan, Mexico',
-                  style: GoogleFonts.ibmPlexMono(textStyle: context.h8),
-                ),
+                Text('Mayan, Mexico', style: GoogleFonts.ibmPlexMono(textStyle: context.h8)),
                 const SizedBox(height: 8),
                 OptionBox(
                   options: [
                     Option(
                       value: "1",
                       title: Text("Home"),
-                      secondary: Icon(CupertinoIcons.cloud_moon_rain),
+                      icon: Icon(CupertinoIcons.cloud_moon_rain),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Mayan, Mexico"),
-                          Text("Mayan, Mexico"),
-                        ],
+                        children: [Text("Mayan, Mexico"), Text("Mayan, Mexico")],
                       ),
                     ),
                     Option(
                       value: "2",
                       title: Text("Home"),
-                      secondary: Icon(CupertinoIcons.cloud_moon_rain),
+                      icon: Icon(CupertinoIcons.cloud_moon_rain),
                       subtitle: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("Mayan, Mexico"),
-                          Text("Mayan, Mexico"),
-                        ],
+                        children: [Text("Mayan, Mexico"), Text("Mayan, Mexico")],
                       ),
                     ),
                   ],
@@ -683,11 +613,7 @@ class _RecipePageState extends State<RecipePage> {
 }
 
 class SliverRecipeList extends StatelessWidget {
-  const SliverRecipeList({
-    super.key,
-    required this.recipe,
-    required this.ingredients,
-  });
+  const SliverRecipeList({super.key, required this.recipe, required this.ingredients});
 
   final Recipe recipe;
   final bool ingredients;
@@ -695,9 +621,7 @@ class SliverRecipeList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList.builder(
-      itemCount: ingredients
-          ? recipe.ingredients.length
-          : recipe.instructions.length,
+      itemCount: ingredients ? recipe.ingredients.length : recipe.instructions.length,
       itemBuilder: (context, index) {
         return Container(
           // height: 50,
@@ -722,9 +646,7 @@ class SliverRecipeList extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(40.0, 8, 8, 8),
                 child: Text(
-                  ingredients
-                      ? recipe.ingredients[index]
-                      : recipe.instructions[index],
+                  ingredients ? recipe.ingredients[index] : recipe.instructions[index],
                   style: context.h7.w3,
                 ),
               ),
@@ -755,10 +677,7 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
         title: Row(
           children: [
             Text('Cart,', style: GoogleFonts.alice(textStyle: context.h2)),
-            Text(
-              ' 3 items',
-              style: GoogleFonts.alice(textStyle: context.h2).c(context.cSur9),
-            ),
+            Text(' 3 items', style: GoogleFonts.alice(textStyle: context.h2).c(context.cSur9)),
           ],
         ),
         actions: [
@@ -808,10 +727,7 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
             TextField(
               decoration: InputDecoration(
                 labelText: 'Promo Code',
-                suffixIcon: TextButton(
-                  onPressed: () {},
-                  child: const Text('Apply'),
-                ),
+                suffixIcon: TextButton(onPressed: () {}, child: const Text('Apply')),
                 border: const OutlineInputBorder(),
               ),
             ),
@@ -822,10 +738,7 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
                 SizedBox(
                   width: 150,
                   height: 40,
-                  child: FilledButton.tonal(
-                    onPressed: () {},
-                    child: const Text('Checkout'),
-                  ),
+                  child: FilledButton.tonal(onPressed: () {}, child: const Text('Checkout')),
                 ),
               ],
             ),
@@ -846,11 +759,7 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
                     SizedBox(
                       height: 80,
                       width: 80,
-                      child: RecipeImage(
-                        delay: 1.ms,
-                        index: index,
-                        sliver: false,
-                      ),
+                      child: RecipeImage(delay: 1.ms, index: index, sliver: false),
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -861,15 +770,10 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              Expanded(
-                                child: Text(item.title, style: context.h7),
-                              ),
+                              Expanded(child: Text(item.title, style: context.h7)),
                               IconButton.outlined(
                                 iconSize: 14,
-                                constraints: BoxConstraints(
-                                  maxHeight: 32,
-                                  maxWidth: 32,
-                                ),
+                                constraints: BoxConstraints(maxHeight: 32, maxWidth: 32),
                                 padding: EdgeInsets.all(6),
                                 icon: const Icon(CupertinoIcons.clear),
                                 onPressed: () {},
@@ -882,10 +786,7 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    '\$95.00',
-                                    style: context.p.line.c(context.cSur8),
-                                  ),
+                                  Text('\$95.00', style: context.p.line.c(context.cSur8)),
                                   Text('\$85.00', style: context.h7.w6),
                                 ],
                               ),
@@ -896,15 +797,9 @@ class _CheckoutCartPageState extends State<CheckoutCartPage> {
                                 ),
                                 child: Row(
                                   children: [
-                                    IconButton(
-                                      icon: const Icon(Icons.remove),
-                                      onPressed: () {},
-                                    ),
+                                    IconButton(icon: const Icon(Icons.remove), onPressed: () {}),
                                     Text('1'),
-                                    IconButton(
-                                      icon: const Icon(Icons.add),
-                                      onPressed: () {},
-                                    ),
+                                    IconButton(icon: const Icon(Icons.add), onPressed: () {}),
                                   ],
                                 ),
                               ),
@@ -1005,9 +900,7 @@ class ReviewPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(width: 16),
-                  Expanded(
-                    child: RatingsBars(percentages: [.8, .6, .4, .2, .1]),
-                  ),
+                  Expanded(child: RatingsBars(percentages: [.8, .6, .4, .2, .1])),
                 ],
               ),
             ),
@@ -1024,21 +917,15 @@ class ReviewPage extends StatelessWidget {
                       decoration: InputDecoration(
                         prefixIcon: const Icon(CupertinoIcons.search),
                         hintText: 'Search reviews...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                       ),
                     ),
                   ),
                   const SizedBox(width: 8),
                   IconButton.filled(
                     style: ButtonStyle(
-                      backgroundColor: WidgetStateColor.resolveWith(
-                        (e) => context.cOnSur,
-                      ),
-                      shape: WidgetStateOutlinedBorder.resolveWith(
-                        (e) => 0.bRound.r(8),
-                      ),
+                      backgroundColor: WidgetStateColor.resolveWith((e) => context.cOnSur),
+                      shape: WidgetStateOutlinedBorder.resolveWith((e) => 0.bRound.r(8)),
                     ),
                     onPressed: () {},
                     icon: const Icon(CupertinoIcons.slider_horizontal_3),
@@ -1056,8 +943,7 @@ class ReviewPage extends StatelessWidget {
             //   childCount: 10,
             // ),
             itemCount: 10,
-            separatorBuilder: (context, index) =>
-                Divider(height: 0, indent: 30, endIndent: 30),
+            separatorBuilder: (context, index) => Divider(height: 0, indent: 30, endIndent: 30),
           ),
 
           // Spacer for bottom button
@@ -1092,11 +978,9 @@ class Recipe {
     required this.bgColor,
   });
 
-  String get bgImage =>
-      bgImageName.isEmpty ? '' : 'assets/desserts/$bgImageName.png';
+  String get bgImage => bgImageName.isEmpty ? '' : 'assets/desserts/$bgImageName.png';
 
-  String get bgImageLg =>
-      bgImageName.isEmpty ? '' : 'assets/desserts/$bgImageName-lg.png';
+  String get bgImageLg => bgImageName.isEmpty ? '' : 'assets/desserts/$bgImageName-lg.png';
 }
 
 class RecipesData {

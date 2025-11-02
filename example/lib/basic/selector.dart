@@ -26,18 +26,29 @@ class SelectorView extends StatelessWidget {
             Flexible(
               child: OptionBox(
                 options: [
-                  Option(value: "Witch", subtitle: Text("witch"), selected: true),
+                  Option(
+                    title: Text("Title"),
+                    value: "Witch",
+                    subtitle: Text("Sub"),
+                    icon: Icon(Icons.grass_outlined),
+                  ),
                   Option(value: "Wizard"),
-                  Option(value: "Sorceror"),
+                  Option(value: "Sorceror", disabled: true, selected: true),
                 ],
               ),
             ),
             Flexible(
               child: OptionBox(
                 options: [
-                  Option(value: "Witch", selected: true),
+                  Option(
+                    title: Text("Title"),
+                    value: "Witch",
+                    subtitle: Text("Sub"),
+                    icon: Icon(Icons.grass_outlined),
+                    selected: true,
+                  ),
                   Option(value: "Wizard"),
-                  Option(value: "Sorceror"),
+                  Option(value: "Sorceror", disabled: true, selected: true),
                 ],
                 multi: true,
               ),
@@ -45,26 +56,39 @@ class SelectorView extends StatelessWidget {
           ],
         ),
 
+        Divider(),
+
         Row(
           children: [
             Flexible(
               child: OptionBox(
                 options: [
-                  Option(value: "Witch", selected: true),
+                  Option(
+                    title: Text("Title"),
+                    value: "Witch",
+                    subtitle: Text("Sub"),
+                    icon: Icon(Icons.grass_outlined),
+                  ),
                   Option(value: "Wizard"),
-                  Option(value: "Sorceror"),
+                  Option(value: "Sorceror", disabled: true, selected: true),
                 ],
                 multi: false,
                 display: OptionDisplay.switchTile,
+                divider: true,
               ),
             ),
 
             Flexible(
               child: OptionBox(
                 options: [
-                  Option(value: "Witch", selected: true),
+                  Option(
+                    title: Text("Title"),
+                    value: "Witch",
+                    subtitle: Text("Sub"),
+                    icon: Icon(Icons.grass_outlined),
+                  ),
                   Option(value: "Wizard"),
-                  Option(value: "Sorceror"),
+                  Option(value: "Sorceror", disabled: true, selected: true),
                 ],
                 display: OptionDisplay.chip,
               ),
