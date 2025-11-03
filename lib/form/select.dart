@@ -202,7 +202,15 @@ class _OptionBoxState<T> extends State<OptionBox<T>> {
                 : Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      option.icon!,
+                      Theme(
+                        data: ThemeData(
+                          iconTheme: IconThemeData(
+                            color: context.cs.onSecondary,
+                            size: context.tm?.fontSize,
+                          ),
+                        ),
+                        child: option.icon!,
+                      ),
                       SizedBox(width: 8),
                       option.title ?? Text(option.value.toString()),
                     ],
@@ -230,7 +238,6 @@ class _OptionBoxState<T> extends State<OptionBox<T>> {
               title: option.title ?? Text(option.value.toString()),
               subtitle: option.subtitle,
               secondary: option.icon,
-              thumbIcon: WidgetStateProperty.all(Icon(Icons.check)),
               value: isSelected,
               selected: isSelected,
               controlAffinity: widget.controlAffinity,

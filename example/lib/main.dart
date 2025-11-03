@@ -3,6 +3,7 @@ import 'package:example/app_themes.dart';
 import 'package:example/basic/bar.dart';
 import 'package:example/basic/button.dart';
 import 'package:example/basic/color.dart';
+import 'package:example/basic/color_palettes_screen.dart';
 import 'package:example/basic/dialog.dart';
 import 'package:example/basic/dropdown.dart';
 import 'package:example/basic/input.dart';
@@ -67,7 +68,6 @@ void main() {
           MoonDrawerLink(label: "Node Editor", path: '/node_editor'),
           MoonDrawerLink(label: "Music", path: '/music'),
           MoonDrawerLink(label: "Carousel", path: '/carousel'),
-          MoonDrawerLink(label: "ColorScheme", child: ColorSchemeExample()),
         ],
         child: child ?? Text("Error"),
       );
@@ -134,6 +134,8 @@ class _HomeState extends ConsumerState<Home> {
           ExpansionTile(title: Text("Bar"), children: [BarView()]),
           ExpansionTile(title: Text("Dialog"), children: [DiaglogView()]),
           ExpansionTile(title: Text("Nav"), children: [NavView()]),
+          ExpansionTile(title: Text("Color"), children: [ColorSchemeExample(showScaffold: false)]),
+          ExpansionTile(title: Text("Color"), children: [ColorPalettesScreen()]),
         ],
       ),
 

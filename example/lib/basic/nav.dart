@@ -20,113 +20,113 @@ class NavView extends StatelessWidget {
   }
 }
 
-class NavigationDrawerSection extends StatefulWidget {
-  const NavigationDrawerSection({super.key});
+// class NavigationDrawerSection extends StatefulWidget {
+//   const NavigationDrawerSection({super.key});
 
-  @override
-  State<NavigationDrawerSection> createState() => _NavigationDrawerSectionState();
-}
+//   @override
+//   State<NavigationDrawerSection> createState() => _NavigationDrawerSectionState();
+// }
 
-class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
-  int navDrawerIndex = 0;
+// class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
+//   int navDrawerIndex = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    return NavigationDrawer(
-      onDestinationSelected: (selectedIndex) {
-        setState(() {
-          navDrawerIndex = selectedIndex;
-        });
-      },
-      selectedIndex: navDrawerIndex,
-      children: <Widget>[
-        DrawerHeader(child: Text("Header")),
+//   @override
+//   Widget build(BuildContext context) {
+//     return NavigationDrawer(
+//       onDestinationSelected: (selectedIndex) {
+//         setState(() {
+//           navDrawerIndex = selectedIndex;
+//         });
+//       },
+//       selectedIndex: navDrawerIndex,
+//       children: <Widget>[
+//         DrawerHeader(child: Text("Header")),
 
-        ExpansionPanelList(
-          materialGapSize: 0,
-          elevation: 0,
-          expandedHeaderPadding: EdgeInsets.all(0),
-          children: [
-            ExpansionPanel(
-              canTapOnHeader: true,
-              isExpanded: true,
-              headerBuilder: (context, isExpanded) =>
-                  ListTile(title: Text('Home', style: context.h6.w5)),
+//         ExpansionPanelList(
+//           materialGapSize: 0,
+//           elevation: 0,
+//           expandedHeaderPadding: EdgeInsets.all(0),
+//           children: [
+//             ExpansionPanel(
+//               canTapOnHeader: true,
+//               isExpanded: true,
+//               headerBuilder: (context, isExpanded) =>
+//                   ListTile(title: Text('Home', style: context.h6.w5)),
 
-              body: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: [
-                    ...destinations.asMap().entries.map((destination) {
-                      return ListTile(
-                        leading: destination.value.icon,
-                        title: Text(destination.value.label),
-                        selected: destination.key == navDrawerIndex,
-                        style: ListTileStyle.drawer,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-                        shape: destination.key != navDrawerIndex
-                            ? null
-                            : RoundedRectangleBorder(
-                                borderRadius: BorderRadiusGeometry.all(Radius.circular(32)),
-                              ),
-                        onTap: () {
-                          setState(() {
-                            navDrawerIndex = destination.key;
-                          });
-                        },
-                      );
-                    }),
-                    SizedBox(height: 20),
-                  ],
-                ),
-              ),
-            ),
+//               body: Padding(
+//                 padding: const EdgeInsets.all(8.0),
+//                 child: Column(
+//                   children: [
+//                     ...destinations.asMap().entries.map((destination) {
+//                       return ListTile(
+//                         leading: destination.value.icon,
+//                         title: Text(destination.value.label),
+//                         selected: destination.key == navDrawerIndex,
+//                         style: ListTileStyle.drawer,
+//                         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+//                         shape: destination.key != navDrawerIndex
+//                             ? null
+//                             : RoundedRectangleBorder(
+//                                 borderRadius: BorderRadiusGeometry.all(Radius.circular(32)),
+//                               ),
+//                         onTap: () {
+//                           setState(() {
+//                             navDrawerIndex = destination.key;
+//                           });
+//                         },
+//                       );
+//                     }),
+//                     SizedBox(height: 20),
+//                   ],
+//                 ),
+//               ),
+//             ),
 
-            ExpansionPanel(
-              canTapOnHeader: true,
-              isExpanded: true,
-              headerBuilder: (context, isExpanded) =>
-                  ListTile(title: Text('Home', style: context.h6.w5)),
-              body: Column(
-                children: destinations.asMap().entries.map((destination) {
-                  return ListTile(
-                    leading: destination.value.icon,
-                    title: Text(destination.value.label),
-                    selected: destination.key == navDrawerIndex,
-                    onTap: () {
-                      setState(() {
-                        navDrawerIndex = destination.key;
-                      });
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
-        ),
-        ...destinations.map((destination) {
-          return NavigationDrawerDestination(
-            label: Text(destination.label),
-            icon: destination.icon,
-            selectedIcon: destination.selectedIcon,
-          );
-        }),
-        const Divider(indent: 28, endIndent: 28),
-        Padding(
-          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
-          child: Text('Labels', style: Theme.of(context).textTheme.titleSmall),
-        ),
-        ...destinations.map((destination) {
-          return NavigationDrawerDestination(
-            label: Text(destination.label),
-            icon: destination.icon,
-            selectedIcon: destination.selectedIcon,
-          );
-        }),
-      ],
-    );
-  }
-}
+//             ExpansionPanel(
+//               canTapOnHeader: true,
+//               isExpanded: true,
+//               headerBuilder: (context, isExpanded) =>
+//                   ListTile(title: Text('Home', style: context.h6.w5)),
+//               body: Column(
+//                 children: destinations.asMap().entries.map((destination) {
+//                   return ListTile(
+//                     leading: destination.value.icon,
+//                     title: Text(destination.value.label),
+//                     selected: destination.key == navDrawerIndex,
+//                     onTap: () {
+//                       setState(() {
+//                         navDrawerIndex = destination.key;
+//                       });
+//                     },
+//                   );
+//                 }).toList(),
+//               ),
+//             ),
+//           ],
+//         ),
+//         ...destinations.map((destination) {
+//           return NavigationDrawerDestination(
+//             label: Text(destination.label),
+//             icon: destination.icon,
+//             selectedIcon: destination.selectedIcon,
+//           );
+//         }),
+//         const Divider(indent: 28, endIndent: 28),
+//         Padding(
+//           padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+//           child: Text('Labels', style: Theme.of(context).textTheme.titleSmall),
+//         ),
+//         ...destinations.map((destination) {
+//           return NavigationDrawerDestination(
+//             label: Text(destination.label),
+//             icon: destination.icon,
+//             selectedIcon: destination.selectedIcon,
+//           );
+//         }),
+//       ],
+//     );
+//   }
+// }
 
 class NavigationRailSection extends StatefulWidget {
   const NavigationRailSection({super.key});
@@ -186,4 +186,58 @@ const List<ExampleDestination> destinations = <ExampleDestination>[
     Icon(Icons.legend_toggle_sharp),
   ),
   ExampleDestination('Settings', Icon(Icons.settings), Icon(Icons.settings)),
+];
+
+class NavigationDrawerSection extends StatefulWidget {
+  const NavigationDrawerSection({super.key});
+
+  @override
+  State<NavigationDrawerSection> createState() => _NavigationDrawerSectionState();
+}
+
+class _NavigationDrawerSectionState extends State<NavigationDrawerSection> {
+  int navDrawerIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return NavigationDrawer(
+      onDestinationSelected: (selectedIndex) {
+        setState(() {
+          navDrawerIndex = selectedIndex;
+        });
+      },
+      selectedIndex: navDrawerIndex,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          child: Text('Mail', style: Theme.of(context).textTheme.titleSmall),
+        ),
+        ...destinations.map((destination) {
+          return NavigationDrawerDestination(
+            label: Text(destination.label),
+            icon: destination.icon,
+            selectedIcon: destination.selectedIcon,
+          );
+        }),
+        const Divider(indent: 28, endIndent: 28),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(28, 16, 16, 10),
+          child: Text('Labels', style: Theme.of(context).textTheme.titleSmall),
+        ),
+        ...labelDestinations.map((destination) {
+          return NavigationDrawerDestination(
+            label: Text(destination.label),
+            icon: destination.icon,
+            selectedIcon: destination.selectedIcon,
+          );
+        }),
+      ],
+    );
+  }
+}
+
+const List<ExampleDestination> labelDestinations = <ExampleDestination>[
+  ExampleDestination('Family', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('School', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
+  ExampleDestination('Work', Icon(Icons.bookmark_border), Icon(Icons.bookmark)),
 ];

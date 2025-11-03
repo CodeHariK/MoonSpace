@@ -1,3 +1,4 @@
+import 'package:example/basic/decoration.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,9 +17,18 @@ class InputView extends StatelessWidget {
           // color: purple,
           borderRadius: BorderRadius.circular(8),
         ),
-        TextFields(),
+        TextInputs(),
       ],
     );
+  }
+}
+
+class TextInputs extends StatelessWidget {
+  const TextInputs({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const ComponentGroupDecoration(label: 'Text inputs', children: [TextFields()]);
   }
 }
 
